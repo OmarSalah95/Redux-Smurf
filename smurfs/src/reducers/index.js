@@ -1,3 +1,25 @@
+import { combineReducers } from 'redux';
+import  APIReducer  from './APIReducer';
+import SmurfReducer  from './SmurfReducer'
+
+export const rootReducer = combineReducers({
+  APIReducer: APIReducer,
+  SmurfReducer: SmurfReducer
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
   Be sure to import in all of the action types from `../actions`
 */
