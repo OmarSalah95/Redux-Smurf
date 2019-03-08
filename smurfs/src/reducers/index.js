@@ -1,11 +1,22 @@
 import { FETCHING_DATA, FETCHING_SUCCESS, FETCHING_FAILURE} from '../actions/APIActions'
-import {ADDING_SMURF, SMURF_ADDED, ADD_SMURF_FAILED,DELETING, DELETING_SUCCESS, DELETING_FAILURE,} from '../actions/SmurfActions';
+import {
+  ADDING_SMURF,
+  SMURF_ADDED, 
+  ADD_SMURF_FAILED,
+  DELETING, 
+  DELETING_SUCCESS, 
+  DELETING_FAILURE, 
+  UPDATING,
+  UPDATING_SUCCESS,
+  UPDATING_FAILURE
+} from '../actions/SmurfActions';
 
 const initialState ={
     smurfs: [],
     fetchingSmurfs: false,
     addingSmurf: false,
     deleting: false,
+    updating: false,
     error:''
 }
 
@@ -55,16 +66,35 @@ const rootReducer = (state = initialState, action) => {
     case DELETING:
       return {
         ...state, 
-        deleting:true
+        deleting:true,
+        error: null
       };
     case DELETING_SUCCESS:
       return {...state, 
         deleting:false, 
-        smurfs:action.payload
+        smurfs: action.payload
       };
     case DELETING_FAILURE:
+    console.log(action.payload);
       return {...state, 
         deleting:false, 
+        error:action.payload
+      };
+
+    case UPDATING:
+      return {
+        ...state, 
+        updating:true
+      };
+    case UPDATING_SUCCESS:
+      return {
+        ...state, 
+        updating:false, 
+        smurfs: action.payload};
+    case UPDATING_FAILURE:
+      return {
+        ...state, 
+        updating:false, 
         error:action.payload
       };
     default:  

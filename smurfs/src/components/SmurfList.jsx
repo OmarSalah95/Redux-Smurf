@@ -9,9 +9,11 @@ class SmurfList extends React.Component{
         this.props.getData()
     }
 
-    deleteSmurf = ( id ) =>{
-        // this.props.deleteSmurf(id)
+    deleteCurrentSmurf = (e ,id ) =>{
+        e.preventDefault()
+        this.props.deleteSmurf(id)
     }
+    
     render(){
         return (
             !this.props.fetchingSmurfs && !this.props.addingSmurf && !this.props.deleting
@@ -19,7 +21,8 @@ class SmurfList extends React.Component{
                     {this.props.smurfs.map(smurf =>
                         <div> 
                             <p>{smurf.name}</p>
-                            <button onClick={this.deleteSmurf(smurf.id)}>Delete</button>
+                            <button onClick={(e) => this.deleteCurrentSmurf(e, smurf.id)}>Delete</button>
+                            <button onClick={(e) => {} }>Edit Smurf</button>
                         </div>    
                     )}
                 </div>

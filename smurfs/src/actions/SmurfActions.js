@@ -26,3 +26,18 @@ export const deleteSmurf = id => dispatch => {
       dispatch({type:DELETING_FAILURE, payload:error})
     })
   }
+
+export const UPDATING = 'UPDATING';
+export const UPDATING_SUCCESS='UPDATING_SUCCESS';
+export const UPDATING_FAILURE = 'UPDATING_FAILURE';
+
+export const updateSmurf = (id, updatedSmurf) => dispatch =>{
+    dispatch({type:UPDATING});
+    axios.put(`http://localhost:3333/smurfs/${id}`, updatedSmurf)
+        .then(response=>{
+            dispatch({type:UPDATING_SUCCESS, payload:response.data})
+        })
+        .catch(error=>{
+            dispatch({type:UPDATING_FAILURE, payload:error})
+        })
+}
