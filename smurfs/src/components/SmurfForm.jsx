@@ -8,6 +8,7 @@ class SmurfForm extends React.Component {
             name: '',
             age: '',
             height: '',
+            id: Date.now()
         }
      }
 
@@ -15,15 +16,22 @@ class SmurfForm extends React.Component {
         this.setState({
           newSmurf: {
             ...this.state.newSmurf,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
           }
         });
     };
 
     addNewSmurf = e =>{
         e.preventDefault();
-        this.state.newSmurf.name
-        this.props.addSmurf(this.state.newSmurf)
+        this.props.addSmurf(this.state.newSmurf),
+        this.setState({
+            newSmurf: {
+                name:'',
+                age: '',
+                height: '',
+                id: Date.now()
+            }
+        })
     }
 
     render() { 
