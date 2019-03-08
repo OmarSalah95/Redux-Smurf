@@ -10,7 +10,7 @@ class SmurfList extends React.Component{
 
     render(){
         return (
-            !this.props.fetchingSmurfs 
+            !this.props.fetchingSmurfs && !this.props.addingSmurf
             ?   <div className="smurf-list">
                     {this.props.smurfs.map(smurf => <p>{smurf.name}</p>)}
                 </div>
@@ -19,8 +19,9 @@ class SmurfList extends React.Component{
     }
 }
 const mapStateToProps = (state) => ({
-    smurfs: state.APIReducer.smurfs,
-    fetchingSmurfs: state.APIReducer.fetchingSmurfs
+    smurfs: state.smurfs,
+    fetchingSmurfs: state.fetchingSmurfs,
+    addingSmurf: state.addingSmurf,
 })
 
 export default connect(mapStateToProps, { getData } )(SmurfList);
